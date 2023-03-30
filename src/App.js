@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
 
 function App() {
+  const [movies, setMovies] = useState([]);
   function fetchMoviesHandler() {
     fetch("https://swapi.dev/films/")
       .then((response) => {
         return response.json;
       })
       .then((data) => {
-        data.results;
+        setMovies(data.results);
       });
   }
 
@@ -20,7 +21,7 @@ function App() {
         <button>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={dummyMovies} />
+        <MoviesList movies={movies} />
       </section>
     </React.Fragment>
   );
